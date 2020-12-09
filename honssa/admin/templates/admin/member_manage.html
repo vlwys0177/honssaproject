@@ -1,0 +1,102 @@
+{% extends 'base2.html' %}
+
+{% block title %}회원관리{% endblock %}
+{% block content %}
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="/admin/index/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="/admin/member/">회원목록</a></div>
+    </div>
+
+    <div style="margin: auto;width: 970px;">
+        <div class="p">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h4 style="margin-top: 0px; padding: 8px;">회원 검색</h4>
+                </div>
+                <div class="widget-content">
+                    <form>
+                        <table>
+                            <thead>
+                            <tbody>
+                                <tr>
+                                    <select name="search_option">
+                                        <option value="all">전체</option>
+                                        <option value="rank">등급</option>
+                                        <option value="name">이름</option>
+                                        <option value="userid">아이디</option>
+                                        <option value="email">이메일</option>
+                                        <option value="phone_number">휴대폰번호</option>
+                                        <option value="reg_date">가입일</option>
+                                    </select>
+
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="search_key">
+                                        <span class="input-group-btn">
+                                            <input class="btn btn-success" type="submit" value="조회">
+                                        </span>
+                                    </div>
+                                </tr>
+                            </tbody>
+                            </thead>
+                        </table>
+                        <p>* 등급은 VIP, VVIP, VVVIP 3단계로</p>
+                        <p><span>구성 되어있습니다.</span></p>
+                            <div class="row" style="margin-bottom:15px;">
+                                <div class="col-lg-5">
+                                    <!-- /input-group -->
+                                </div><!-- /.col-lg-6 -->
+                            </div><!-- /.row -->
+                    </form>
+                </div>
+                <div class="widget-title">
+                    <h4 style="margin-top: 0px; padding: 8px;">회원 목록</h4>
+                </div>
+                <div class="widget-content">
+                    <table class="table table-bordered data-table">
+                        <thead>
+                            <tr>
+                                <th width="15%" style="font-size: 14px;">등급</th>
+                                <th width="15%" style="font-size: 14px;">이름</th>
+                                <th width="15%" style="font-size: 14px;">아이디</th>
+                                <th width="20%" style="font-size: 14px;">이메일</th>
+                                <th width="20%" style="font-size: 14px;">휴대폰번호</th>
+                                <th width="15%" style="font-size: 14px;">가입일</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for member in search_list %} <!-- search_list를 통해  -->
+                        <tr>
+                            <td>{{ member.member_rank }}</td>
+                            <td>{{ member.member_name }}</td>
+                            <td>{{ member.member_id }}</td>
+                            <td>{{ member.member_email }}</td>
+                            <td>{{ member.member_contact_number }}</td>
+                            <td>{{ member.member_join_date }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 회원 페이징-->
+            <div style="text-align: center;">
+                <!-- 현 페이지 보다 이전의 page가 존재한다면 -->
+                {% if search_list.has_previous %}
+                    <!-- 바로 이전 페이지 -->
+                    <a href="?page={{search_list.previous_page_number}}">이전</a>
+                {% endif %}
+
+                <!-- 현재 페이지 -->
+                <span>{{search_list.number}}</span>
+
+                <!-- 현 페이지 보다 이후의 page가 존재한다면 -->
+                {% if search_list.has_next %}
+                    <!-- 바로 다음 페이지 -->
+                    <a href="?page={{search_list.next_page_number}}">다음</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

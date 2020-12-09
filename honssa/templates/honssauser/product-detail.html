@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}혼싸{% endblock %}
+
+{% block content %}
+{% block script %}
+    <link href="{% static 'css/product.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/product2.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+<br>
+  <form method="POST" action="{% url 'honssauser:cart_insert' %}">
+  {% csrf_token %}
+    <input type="text" name="product" value="{{ product.id }}" style="display: none;">
+    <div class="product_view">
+      <h2>{{product.product_name}}</h2>
+      <table>
+        <caption>
+          <details class="hide">
+            <summary>상품정보</summary>
+            ㅡㅡㅡㅡㅡㅡ
+          </details>
+        </caption>
+        <colgroup>
+          <col style="width:173px;">
+          <col>
+        </colgroup>
+        <tbody>
+        <tr>
+          <th>판매가</th>
+          <td class="price">{{product.product_Price}}원</td>
+        </tr>
+        <tr>
+          <th>상품 사이즈 / 용량</th>
+          <td>{{product.product_size}} / {{product.product_volume}}</td>
+        </tr>
+        <tr>
+          <th>브랜드 / 제조사 / 제조국</th>
+          <td>{{product.product_brand}} / {{product.product_manufacturer}} / {{product.product_}}{{product.product_made_country}}</td>
+        </tr>
+        <tr>
+          <th>재고</th>
+          <td>{{product.product_stock}}</td>
+        </tr>
+        <tr>
+          <th>구매수량</th>
+          {% if product.product_stock == 0 %}
+          <td>
+              <input type="text" class="length" style="cursor: context-menu" value="Null" name="quantity" readonly>
+          </td>
+          {% else %}
+          <td>
+              <input type="number" class="length" min="1" max="{{product.product_stock}}" value="1" name="quantity">
+          </td>
+          {% endif %}
+        </tr>
+        <tr>
+          <th>배송비</th>
+          <td>무료배송</td>
+        </tr>
+        <tr>
+          <th>결제금액</th>
+          <td class="total"><b>{{product.product_Price}}</b>원</td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="img">
+        <img src="/honssa/MEDIA/{{ product.product_image }}" alt="">
+      </div>
+      <div class="btns">
+        {% if product.product_stock == 0 %}
+            <a class="btn btn-common" style="line-height: 21px;" onclick="alert('재고가 없습니다.');">재고없음</a>
+        {% else %}
+            <button class="btn btn-common">장바구니</button>
+            <button class="btn btn-common">구매하기</button>
+        {% endif %}
+      </div>
+    </div>
+  </form>
+    <div class = qwe>
+      <h1 class = asd> 상세 내용</h1>
+        <p>{{product.product_description}}</p><br>
+    </div>
+
+{% endblock %}

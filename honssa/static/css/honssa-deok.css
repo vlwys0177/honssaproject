@@ -1,0 +1,319 @@
+.tex-1 {
+    font-size: 20px;
+}
+
+.tex-bold {
+    font-weight: bold;
+}
+
+.col-gray {
+    color: #999
+}
+
+.col-blue {
+    color: #3333FF;
+}
+
+.col-red {
+    color: #FF3333;
+}
+
+.tex-2 {
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+    top: 10;
+}
+
+.tex-3 {
+    font-size: 18;
+    position: relative;
+    top: 10;
+}
+
+.tex-4 {
+    font-size: 40;
+}
+
+.tex-10 {
+    position: relative;
+    top: 41%;
+    width: 96%;
+    margin: 0 auto;
+}
+
+.tex-11 {
+    position: relative;
+    top: 67%;
+    width: 96%;
+    margin: 0 auto;
+}
+
+.bg-whi {
+    background-color: #fff;
+}
+
+.hei-1 {
+    height: 50px;
+}
+
+.hei-2 {
+    height: 80px;
+}
+
+.hei-3 {
+    height: 300px;
+}
+
+.hei-4 {
+    height: 400px;
+}
+
+.hei-5 {
+    height: 220px;
+}
+
+.hei-6 {
+    height: 450px;
+}
+
+.hei-7 {
+    height: 600px
+}
+
+.hei-8 {
+    height: 36px;
+}
+
+.hei-8-c {
+    line-height: 36px;
+}
+
+.hei-9 {
+    height: 160px;
+}
+
+.hei-9-a {
+    height: 145px;
+}
+.box {
+    position: relative;
+    margin: 0 auto;
+    width: 96%;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 1px #000
+}
+
+.box-1 {
+    position: relative;
+    margin: 0 auto;
+    width: 96%;
+    border: 1px solid #ddd;
+}
+
+.m2m table {
+    width: 96%;
+    border: 1px solid #000;
+    margin: 0 auto;
+    box-shadow: 1px 1px 4px #999;
+}
+
+.m2m th, td {
+    border-bottom: 1px solid #000;
+    padding: 5px
+}
+
+.m2m .t-num {
+    text-align: center;
+    width: 50px;
+}
+
+.m2m .t-ans {
+    text-align: center;
+    max-width: 32px;
+    min-width: 32px;
+}
+
+.m2m .t-day {
+    text-align: center;
+    max-width: 81px;
+    min-width: 81px;
+}
+
+.ord-tb table {
+    width: 96%;
+    border: 1px solid #000;
+    margin: 0 auto;
+    box-shadow: 1px 1px 4px #999;
+}
+
+.ord-tb th, td {
+    border-bottom: 1px solid #000;
+    padding: 5px;
+    text-align: center;
+}
+
+.t-hyper {
+    display: block;
+    position: relative;
+    text-align: right;
+    top: -20px;
+}
+
+.t_txt {
+    max-width: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+input.in-text {
+    width: 150px;
+    height: 32px;
+    font-size: 15px;
+    margin: 0 auto;
+}
+
+.le-100 {
+    position: relative;
+    left: 100px;
+}
+
+.le-52 {
+    position: relative;
+    left: 20%;
+}
+
+a {
+    color: #000;
+}
+
+.rdi {
+    position: relative;
+    top: -3px;
+}
+
+.bt-box-b {
+    position: relative;
+    margin: 10px;
+    text-align: center;
+}
+
+.blue-button {
+    border: 0px;
+    width: 100px;
+    background-color: #5FD0F5;
+    color: #FFF;
+    box-shadow: 0px 0px 2px #000;
+}
+
+.blue-button:hover {
+    background-color: #5BA1EB;
+}
+
+.bt-box-g {
+    position: relative;
+    margin: 10px;
+    text-align: right;
+    top: -50px;
+    right: 50px;
+}
+
+.green-button {
+    border: 0px;
+    width: 100px;
+    background-color: #93E070;
+    color: #FFF;
+    box-shadow: 0px 0px 2px #000;
+}
+
+.green-button:hover {
+    background-color: #6BED93;
+}
+
+.pg {
+    padding: 18px;
+    text-align: center;
+    font-size: 18;
+}
+
+.bas-bor {
+    border: 1px solid #eee;
+}
+
+.box-1 div.hei-8 {
+    padding: 7px 3px;
+}
+
+.box-1 div.hei-9 {
+    padding: 7px 3px;
+}
+
+input.stu_box {
+    position: absolute;
+    height: 35px;
+    left: 100px;
+}
+
+.stu-span {
+    position: absolute;
+    height: 35px;
+    left: 30%;
+}
+
+input.stu_box-1 {
+    position: absolute;
+    height: 35px;
+    left: 150px;
+}
+
+select.stu_box-1 {
+    position: absolute;
+    height: 35px;
+    left: 150px;
+}
+
+.sales-analy-btn {
+    margin: 20px;
+    font-size: 18px;
+    font-weight: 550;
+    padding: 5px;
+    box-shadow: 0px 1px 2px #000;
+}
+
+.sales-analy-btn:hover {
+    background: #91D9CD;
+}
+
+.sales-analy-btn:hover btn-white {
+    background: #fff;
+}
+
+.btn-choice {
+    background: #A6EFF8;
+}
+
+.tex-shadow {
+    text-shadow: 1px 1px 2px #000;
+}
+
+.date-btn {
+    width: 80px;
+    height: 35px;
+    border: 0px;
+    box-shadow: 1px 1px 1px #888;
+    background: #fff;
+}
+
+.date-btn:hover {
+    background: #DDD;
+}
+
+.address > thead > tr >  th {
+    text-align: center;
+}
+
+.address > tbody > tr > td:hover {
+    font-weight: 550;
+    cursor: pointer;
+}

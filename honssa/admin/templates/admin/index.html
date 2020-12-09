@@ -1,0 +1,91 @@
+{% extends 'base2.html' %}
+{% if user.is_authenticated %}
+{% load humanize %}
+
+{% block title %}혼싸 관리자 페이지 {% endblock %}
+{% block content %}
+<script>
+  let today = new Date(); // 오늘 날짜 데이터
+  let month = today.getMonth() + 1; // 월
+  let day = today.getDate(); // 날짜
+</script>
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+  </div>
+  <div class="bg-whi hei-1"><div class="tex-10">
+    <span class="tex-1">오늘의 매출현황</span>
+    <span class="col-gray"><script>document.write(month + '월' + day + '일')</script></span>
+  </div></div>
+  <div class="today">
+    <span class="to-1">
+      <a href="/admin/order?search=today">
+      <div class="to-icon"><i class="cart"></i></div>
+      <div class="to-tex"><span class="tex-1 tex-bold">주문</span><span class="col-gray"> ({{ cnt }} 건)</span></br><span class="tex-2">{{ pay|intcomma }}</span><span class="tex-3"> 원</span></div>
+      </a>
+    </span><!--
+    --><span class="to-1">
+      <a href="/admin/order?search=결제완료">
+      <div class="to-icon"><i class="coin"></i></div>
+      <div class="to-tex"><span class="tex-1 tex-bold">결제</span><span class="col-gray"> ({{ fin_cnt }} 건)</span></br><span class="tex-2">{{ fin_pay|intcomma }}</span><span class="tex-3"> 원</span></div>
+      </a>
+    </span><!--
+    --><span class="to-2">
+      <a href="/admin/order?search=환불">
+      <div class="to-icon"><i class="refund"></i></div>
+      <div class="to-tex"><span class="tex-1 tex-bold">환불</span><span class="col-gray"> ({{ ref_cnt }} 건)</span></br><span class="tex-2">{{ ref_pay|intcomma }}</span><span class="tex-3"> 원</span></div>
+      </a>
+    </span>
+  </div>
+  <div class="bg-whi hei-2"><div class="tex-11">
+    <span class="tex-1">주문현황</span>
+    <span class="col-gray">(최근 1개월)</span>
+  </div></div>
+  <div class="month tex-bold o">
+    <span class="to-1">
+      <div class="to-tex"><span class="tex-4">{{ before_pay_mon }}</span></br><span class="col-blue"></br>입금전</span></div>
+    </span><span class="to-1">
+      <div class="to-tex"><span class="tex-4">{{ ready_deli_mon }}</span></br><span class="col-blue"></br>배송준비중</span></div>
+    </span><span class="to-1">
+      <div class="to-tex"><span class="tex-4">{{ ing_deli_mon }}</span></br><span class="col-blue"></br>배송중</span></div>
+    </span>
+  </div>
+  <div class="bg-whi hei-2"><div class="tex-11">
+    <span class="tex-1">취소 / 교환 / 환불현황</span>
+    <span class="col-gray">(최근 1개월)</span>
+  </div></div>
+  <div class="month tex-bold c">
+    <span class="to-1">
+      <div class="to-tex"><span class="tex-4">{{ cancel_mon }}</span></br><span class="col-red"></br>취소</span></div>
+    </span><span class="to-1">
+      <div class="to-tex"><span class="tex-4">{{ change_mon }}</span></br><span class="col-red"></br>교환</span></div>
+    </span><span class="to-1">
+      <div class="to-tex"><span class="tex-4">{{ refund_mon }}</span></br><span class="col-red"></br>환불</span></div>
+    </span>
+  </div>
+  <div class="bg-whi hei-2"><div class="tex-11">
+    <span class="tex-1">1:1 문의 게시판</span>
+    <span class="col-gray">(가장 최신글 5개)</span>
+    <span class="t-hyper"><a href="/admin/faq">이동하기</a></span>
+  </div></div>
+  <div class="bg-whi hei-3 m2m">
+    <table>
+      <thead>
+        <tr>
+          <th class="t-num">번호</th><th>제목</th><th>내용</th><th class="t-day">작성일</th><th class="t-ans">답변상태</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for m2m in m2m_list %}
+        <tr>
+          <td class="t-num">{{ m2m.id }}</td><td class="t-txt"><a href="/admin/answer/{{ m2m.id }}">{{ m2m.comment_title }}</a></td><td class="t-txt">{{ m2m.comment_question }}</td><td class="t-day">{{ m2m.comment_write_date }}</td><td class="t-ans">{{ m2m.comment_status }}</td>
+      {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+{% else %}
+가나다라
+{% endif %}

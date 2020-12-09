@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}혼싸{% endblock %}
+
+
+{% block content %}
+
+<section class="contact py-lg-4 py-md-3 py-sm-3 py-3">
+    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+        <form method="post">
+        {% csrf_token %}
+            <input type="text" name="user_id" value="{{ user.id }}" style="display: none;">
+            <div style="height: 800px;border: 1px solid #888;margin: 30px 0px;padding: 20px;text-align: center;">
+                <div style="height: 60px;line-height: 60px;margin-bottom: 20px;text-align: left;">
+                    <span style="font-size: 20px; margin: 20px">아 이 디</span><input style="height: 30px;width: 200px;position: relative;left: 100px;" type="text" name="id" value="{{ User.member_id }}" readonly>
+                </div>
+                <div style="height: 60px;line-height: 60px;margin-bottom: 20px;text-align: left;">
+                    <span style="font-size: 20px; margin: 20px">비밀번호</span><input style="height: 30px;width: 200px;position: relative;left: 90px;" type="password" name="password1" value="{{ User.member_password }}">
+                </div>
+                <div style="height: 60px;line-height: 60px;margin-bottom: 20px;text-align: left;">
+                    <span style="font-size: 20px; margin: 20px">비밀번호 재확인</span><input style="height: 30px;width: 200px;position: relative;left: 25px;" type="password" name="password2" value="{{ User.member_password }}">
+                </div>
+                <div style="height: 60px;line-height: 60px;margin-bottom: 20px;text-align: left;">
+                    <span style="font-size: 20px; margin: 20px">이&nbsp;&nbsp;&nbsp;&nbsp;름</span><input style="height: 30px;width: 200px;position: relative;left: 110px;" type="text" name="name" value="{{ User.member_name }}" readonly>
+                </div>
+                <div style="height: 60px;line-height: 60px;margin-bottom: 20px;text-align: left;">
+                    {% if message1 %}
+                        <span style="font-size: 20px; margin: 20px">휴대전화</span><input style="height: 30px;width: 200px;position: relative;left: 90px;" type="text" name="phone" value="{{ User.member_contact_number }}">
+                    {% else %}
+                        <span style="font-size: 20px; margin: 20px">휴대전화</span><input style="height: 30px;width: 200px;position: relative;left: 90px;" type="text" name="phone" value="0{{ User.member_contact_number }}">
+                    {% endif %}
+                </div>
+                <div style="height: 60px;line-height: 60px;margin-bottom: 20px;text-align: left;">
+                    <span style="font-size: 20px; margin: 20px">이 메 일</span><input style="height: 30px;width: 200px;position: relative;left: 100px;" type="email" name="email" value="{{ User.member_email }}">
+                </div>
+                <div style="height: 60px;line-height: 60px;margin-bottom: 20px;text-align: left;">
+                    <span style="font-size: 20px; margin: 20px">주&nbsp;&nbsp;&nbsp;&nbsp;소</span><input style="height: 30px;width: 200px;position: relative;left: 110px;" type="text" name="address" value="{{ User.member_address }}">
+                    <input type="text" name="address_id" value="{{ auth_user.first_name }}" style="display: none;">
+                </div>
+                <div style="height: 60px;line-height: 60px;margin-bottom: 20px;text-align: left;">
+                    <span style="font-size: 20px; margin: 20px">상세주소</span><input style="height: 30px;width: 200px;position: relative;left: 90px;" type="text" name="address_detail" value="{{ User.member_address_detail }}">
+                </div>
+                <div style="height: 60px;line-height: 60px;margin-bottom: 20px;text-align: left;">
+                    <span style="font-size: 20px; margin: 20px">등&nbsp;&nbsp;&nbsp;&nbsp;급</span><input style="height: 30px;width: 200px;position: relative;left: 110px;" type="text" name="rank" value="{{ User.member_rank }}" readonly>
+                </div>
+                <p style="font-weight: 550;color: red;">{{ message }}</p><p style="font-weight: 550;color: blue;">{{ message1 }}</p>
+                <input type="submit" name="action" value="저장" style="width: 100px;">
+                <input type="submit" name="action" value="탈퇴" style="width: 100px;">
+            </div>
+            {% if search %}
+            <div style="border: 1px solid #000;width: 400px;height: 600px;position: absolute;top: 35%;left: 55%;">
+                <div style="text-align: center;"><input type="text" style="margin: 10px;width: 70%;" name="address_search" placeholder="도로명 주소로 검색하세요"><input id="address_search" type="submit" style="border-radius: 10px;width: 70px;background: #68EFF8;border: 0px;" name="action" value="검색"></div>
+                <div style="margin: 0px 10px;padding: 5px;border: 1px solid #bbb;height: 90%;overflow-y: scroll;">
+                    <table class="table address">
+                        <thead>
+                            <tr>
+                                <th>도로명</th>
+                                <th>우편번호</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for address in address %}
+                            <tr>
+                                <td><button type="submit" name="action" value="{{ address.id }}">{{ address.address_si_do }} {{ address.address_si_gun_gu }} {{ address.address_road_name }}</button></td>
+                                <td>{{ address.address_post_number }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+            <input type="submit" name="action" style="border-radius: 10px;width: 70px;background: #68EFF8;border: 0px;position: relative;top: -309px;left: 450px;" value="찾기">
+        </form>
+    </div>
+</section>
+
+
+{% endblock %}

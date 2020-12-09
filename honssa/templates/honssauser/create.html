@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <script src="http://code.jquery.com/jquery-1.12.4.min.js" ></script>
+        <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+        <script>
+        (function() {
+            var IMP = window.IMP;
+            var code = "iamport";  // FIXME: 가맹점 식별코드
+            IMP.init(code);
+
+            // 결제요청
+            IMP.request_pay({
+                // name과 amount만 있어도 결제 진행가능
+                pg : 'html5_inicis', // pg 사 선택
+                pay_method : 'card',
+                merchant_uid : 'merchant_' + new Date().getTime(),
+                name : '(주) 혼싸',
+                amount : '{{ price }}',
+                buyer_email : '{{ member.member_email }}',
+                buyer_name : '{{ member.member_name }}',
+                buyer_tel : '0' + '{{ member.member_contact_number }}',
+                buyer_addr : '{{ member.member_address }}' + ' {{ member.member_address_detail }}',
+                buyer_postcode : '12345',
+                m_redirect_url : '../order/'
+            }, function(rsp) {
+                if ( rsp.success ) {
+                    var msg = '(주)혼싸 결제가 완료되었습니다.';
+                    msg += '\n결제 금액 : ' + rsp.paid_amount;
+                    var success = 1
+                }
+                <!--결제 실패시 db연동 x-->
+                else {
+                    var msg = '결제에 실패하였습니다.\n에러내용 : ' + rsp.error_msg
+                    var success = 0
+                }
+                alert(msg);
+                if (success == 1){
+                    $("#form").submit();
+                }
+                else {
+                    location.href = "/honssa/main";
+                }
+            });
+        })();
+        </script>
+
+    </head>
+
+    <body>
+        <form method="POST" action="../order/" id="form">
+            {% csrf_token %}
+            {% for cart in cart_list %}
+            <input type="text" style="display: none;" name="cart" value="{{ cart }}"/>
+            {% endfor %}
+            <input type="text" style="display: none;" name="total_price" value="{{ price }}"/>
+            <input type="text" style="display: none;" name="pay_method" value="카드"/>
+        </form>
+    </body>
+</html>

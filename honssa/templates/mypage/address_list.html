@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}혼싸{% endblock %}
+{% block content %}
+
+<section class="contact py-lg-4 py-md-3 py-sm-3 py-3">
+    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+        <div style="border: 1px solid #999;margin: 5px 0;padding: 20px;">
+            <div>
+                <input type="checkbox" name="address" value="address" style="width: 20px; height: 20px;position: relative;top: -30px">
+                <ul style="display: inline-block;position: relative;left: 45px;">
+                    <li style="list-style: disc;margin: 5px;">이 름 <input type="text"></li>
+                    <li style="list-style: disc;margin: 5px;">주 소 <input type="text"></li>
+                    <li style="list-style: disc;margin: 5px;">연락처 <input type="text"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

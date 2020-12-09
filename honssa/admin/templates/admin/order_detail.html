@@ -1,0 +1,48 @@
+{% extends 'base2.html' %}
+{% block title %}혼싸 관리자 페이지 {% endblock %}
+{% block content %}
+
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="/admin/index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="../"> 주문관리</a><a href="">상세정보</a></div>
+  </div>
+  <div class="bg-whi hei-8"></div>
+  <div class="bg-whi hei-7">
+    <div class="box" style="height: 550px;">
+      <div class="tex-2 hei-1" style="font-size: 25px; padding: 10;">상세정보</div>
+      <form method="post" class="post-form">
+        {% csrf_token %}
+      <div class="box-1 tex-1">
+        <div class="hei-8 hei-8-c">주문번호<input style="height: 35px;" class="stu_box" name="order_id" type="text" value="{{order.id}}" readonly><span class="stu-span">입금자명<input class="stu_box-1" type="text" value="{{order.member_id.member_name}}" readonly></div></span>
+        <div class="hei-8 hei-8-c">주 문 자<input style="height: 35px;" class="stu_box" type="text" value="{{order.member_id.member_name}}" readonly><span class="stu-span">입금은행<input class="stu_box-1" name="order_bank" type="text" value="{{order.order_bank}}" readonly></div></span>
+        <div class="hei-8 hei-8-c">상 품 명<input style="height: 35px;" class="stu_box" type="text" value="{{order.product_id.product_name}}" readonly><span class="stu-span">결제상태
+          <select class="stu_box-1" name="order_pay_status">
+            <option value="결제전">결제전</option>
+            <option value="결제완료">결제완료</option>
+          </select></div></span>
+        <div class="hei-8 hei-8-c">상품갯수<input style="height: 35px;" class="stu_box" name="order_quantity" type="text" value="{{order.order_quantity}}" readonly><span class="stu-span">배송상태
+          <select class="stu_box-1" name="order_status">
+            <option value="배송준비">배송준비</option>
+            <option value="배송중">배송중</option>
+            <option value="배송완료">배송완료</option>
+            <option value="취소">취소</option>
+            <option value="교환">교환</option>
+            <option value="환불">환불</option>
+          </select></div></span>
+        <div class="hei-8 hei-8-c">배 송 지<input style="height: 35px;" class="stu_box" type="text" value="{{order.member_id.member_address}}" readonly>
+        </div>
+        <div class="hei-8 hei-8-c">택 배 사<input style="height: 35px;" class="stu_box" name="order_delivery_company" type="text" value="{{order.order_delivery_company}}"></div>
+        <div class="hei-8 hei-8-c">송장번호<input style="height: 35px;" class="stu_box" name="order_transport_number" type="text" value="{{order.order_transport_number}}"></div>
+        <div class="hei-8 hei-8-c">결제금액<input style="height: 35px;" class="stu_box" name="order_price" type="text" value="{{order.order_price}}" readonly></div>
+        <div class="hei-8 hei-8-c">결제수단<input style="height: 35px;" class="stu_box" name="order_mathod" type="text" value="{{order.order_status}}" readonly></div>
+      </div>
+      <div class="bt-box-g">
+        <button class="green-button" type="submit">저장</button>
+        </form>
+      </div>
+      </div>
+      </div>
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,522 @@
+{% if user.is_authenticated %}
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Ecommerce">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" type="text/css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}" type="text/css">
+    <!-- Line Icons CSS -->
+    <link rel="stylesheet" href="{% static 'assets/fonts/line-icons/line-icons.css' %}" type="text/css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" type="text/css">
+    <!--checkout-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/checkout.css' %}">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="{% static 'assets/extras/animate.css' %}" type="text/css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="{% static 'assets/extras/owl.carousel.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/extras/owl.theme.css' %}" type="text/css">
+    <!-- Slicknav Css -->
+    <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}" type="text/css">
+    <!-- Responsive CSS Styles -->
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" type="text/css">
+      <!--payment-->
+    <link rel="stylesheet" href="{% static 'assets/css/easy-responsive-tabs.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/checkout.css' %}">
+
+    <link href="{% static 'assets/css/fontawesome-all.min.css' %}" rel="stylesheet" type="text/css" media="all">
+    <!--Shoping cart-->
+    <link rel="stylesheet" href= "{% static 'assets/css/style.css' %}" type="text/css" />
+
+
+    <link rel="stylesheet" href="{% static 'css/honssa-deok.css' %}"/>
+
+    {% block script %}
+    {% endblock %}
+
+    {% block style %}
+    {% endblock %}
+  </head>
+
+<body>
+<!--Header Section Start -->
+    <div class="header"></div>
+      <!-- Start Top Bar -->
+      <div class="top-bar">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 col-sm-2">
+              <div class="language-wrapper">
+                <div class="box-language">
+                  <form id="form-language">
+                    <div class="btn-group toggle-wrap">
+                        <span><img src="{% static 'assets/img/language/korea.png' %}" alt="korea" title="대한민국" height="11" width="16"> 대한민국</span>
+                    </div>
+                  </form>
+                </div>
+                <div class="box-currency">
+                  <form method="post" id="form-currency">
+                    <div class="btn-group toggle-wrap">
+                        <div class="amado-navbar-brand">
+                        </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="clear"></div>
+              </div>
+              <div class="col-md-8 col-sm-10">
+              <!-- 검색창, 최근 검색어 기능 -->
+<!--              <div class="search-area">-->
+<!--                <form>-->
+<!--                  <div class="control-group">-->
+<!--                    <ul class="categories-filter animate-dropdown">-->
+<!--                      <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="category.html">최근검색어 <span class="caret"></span></a>-->
+<!--                        <ul class="dropdown-menu animated fadeIn">-->
+<!--                          <li class="menu-header">최근 검색어</li>-->
+<!--                          <li><a tabindex="-1" href="#">- 에어프라이어</a></li>-->
+<!--                          <li><a tabindex="-1" href="#">- 인덕션</a></li>-->
+<!--                          <li><a tabindex="-1" href="#">- 전자레인지</a></li>-->
+<!--                          <li><a tabindex="-1" href="#">- 청소기</a></li>-->
+<!--                        </ul>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                    <input class="search-field" placeholder="검색어를 입력하세요">-->
+<!--                    <a class="search-button" href="#"><i class="icon-magnifier"></i></a>-->
+<!--                  </div>-->
+<!--                </form>-->
+<!--              </div>-->
+              <!--좋아요(찜), 장바구니 아이콘 설정 (장바구니에 들어있는 물건 숫자표시-->
+              <div class="shop-cart">
+                <ul>
+                  <li><a class="cart-icon cart-btn" href="wishlist.html"><span class="icon-heart"></span></a></li>
+                  <li>
+                    <a href="/honssa/cart/" class="cart-icon cart-btn"><i class="icon-basket"></i></a>
+                    <div class="cart-box">
+<!--                      <div class="popup-container">-->
+                        <div>
+<!--                          <a href="#" class="image">-->
+<!--                            <img src="assets/img/products/product-menu-1.png"  alt="">-->
+<!--                          </a>-->
+                          <div class="content">
+                          </div>
+                        </div>
+                      </div>
+
+                  </li>
+                </ul>
+              </div>
+              <!--로그아웃 클릭 시 로그인 페이지로 이동-->
+              <div class="account link-inline">
+                <a href="{% url 'user:logout' %}"><i class="icon-login"></i><span>로그아웃</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Top Bar -->
+      <!-- 상단에 홈페이지 로고 및 Navigation 설정 -->
+      <nav class="navbar navbar-default" data-spy="affix" data-offset-top="50">
+        <div class="container">
+          <div class="row">
+            <div class="navbar-header">
+              <!-- Stat Toggle Nav Link For Mobiles -->
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <i class="fa fa-bars"></i>
+              </button>
+              <a class="navbar-brand" href="/honssa/main/">
+                <img src="{% static 'assets/img/logo.png' %}" alt="">
+              </a>
+            </div>
+            <div class="navbar-collapse collapse">
+
+              <!-- Start Navigation List -->
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/honssa/cart/" class="menulinks">장바구니</a></li>
+                <li><a href="/honssa/main/">카테고리 <span class="caret"></span></a>
+                  <div class="dropdown mega-menu megamenu1">
+                    <div class="row">
+                      <div class="col-sm-3 col-xs-12">
+                        <ul class="menulinks">
+                          <li class="maga-menu-title">
+                            <a href="/honssa/main/주방용품/">주방용품</a>
+                          </li>
+                          <li><a href="/honssa/main/에어프라이어/">에어프라이어 / 튀김기</a></li>
+                          <li><a href="/honssa/main/냉장고/">냉장고</a></li>
+<!--                          <li><a href="category.html">전자레인지</a></li>-->
+<!--                          <li><a href="category.html">믹서기</a></li>-->
+<!--                          <li><a href="category.html">커피머신</a></li>-->
+                        </ul>
+                      </div>
+                      <div class="col-sm-3 col-xs-12">
+                        <ul class="menulinks">
+                          <li class="maga-menu-title">
+                            <a href="/honssa/main/생활용품/">생활용품</a>
+                          </li>
+                          <li><a href="/honssa/main/에어컨">에어컨/냉풍기</a></li>
+<!--                          <li><a href="category.html">제습기</a></li>-->
+<!--                          <li><a href="category.html">세탁기</a></li>-->
+<!--                          <li><a href="category.html">모니터</a></li>-->
+<!--                          <li><a href="category.html">TV</a></li>-->
+                        </ul>
+                      </div>
+                       <div class="col-sm-3 col-xs-12">
+                        <ul class="menulinks">
+                          <li class="maga-menu-title">
+                            <a href="/honssa/main/청소용품">청소용품</a>
+                          </li>
+                          <li><a href="/honssa/main/청소기">청소기</a></li>
+                          <li><a href="/honssa/main/세탁기">세탁기</a></li>
+<!--                          <li><a href="category.html">침구 청소기</a></li>-->
+<!--                          <li><a href="category.html">공기 청정기</a></li>-->
+<!--                          <li><a href="category.html">물걸레</a></li>-->
+                        </ul>
+                      </div>
+                      <div class="col-sm-3 col-xs-12">
+                      </div>
+                      <div class="col-sm-5 col-sm-offset-1 col-xs-12">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li><a href="/honssa/my">마이페이지 <span class="caret"></span></a>
+                  <ul class="dropdown">
+                    <li><a href="/honssa/my/detail/">개인정보 수정</a></li>
+                    <li><a href="/honssa/my/order_list/">주문목록</a></li>
+                    <li><a href="/honssa/service/m2m/">취소/교환/환불</a></li>
+                  </ul>
+                <li><a href="/honssa/service/">고객센터 <span class="caret"></span></a>
+                  <ul class="dropdown">
+                    <li><a href="/honssa/service/m2m">1:1 문의하기</a></li>
+<!--                    <li><a href="/honssa/main/board/">자주하는 질문</a></li>-->
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    <div class="page-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="breadcrumb">
+              <a href="/honssa/main/"><img src="{% static 'assets/img/honssa logo.PNG' %}"  alt=""></a></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+<!--          <div class="container">-->
+<!--            <a href="#"><i class="icon-home"></i> Home</a>-->
+<!--              <span class="crumbs-spacer"><i class="fa fa-angle-double-right"></i></span>-->
+<!--              <span class="current">메인 페이지</span>-->
+<!--      </div>-->
+    </div>
+<!--     End Page Header -->
+<div>
+{% block content %}
+{% endblock %}
+</div>
+    <!-- Footer Start -->
+
+<footer>
+
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div id="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <p>(주) 혼싸(Honssa) | 대표 000 | 사업자등록번호 xxx-xx-xxxxxxx</p>
+            <p>문의 전화 xx-xxx-xxxx(xxxx) 영업시간 AM 10:00 ~ PM 7:00</p>
+            <p>주소 (매장, 사무실) | 문의 메일 honssa@naver.com</p>
+          </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Copyright End -->
+
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+      <i class="icon-arrow-up"></i>
+    </a>
+
+    <!-- All js here -->
+    <script type="text/javascript" src="{% static 'assets/js/jquery-min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/classie.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/slick.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.slicknav.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/main.js' %}"></script>
+         <!--//js working-->
+        <!-- Modal 1-->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <div class="register-form">
+                     <form action="#" method="post">
+                        <div class="fields-grid">
+                           <div class="styled-input">
+                              <input type="text" placeholder="Your Name" name="Your Name" required="">
+                           </div>
+                           <div class="styled-input">
+                              <input type="email" placeholder="Your Email" name="Your Email" required="">
+                           </div>
+                           <div class="styled-input">
+                              <input type="password" placeholder="password" name="password" required="">
+                           </div>
+                           <button type="submit" class="btn subscrib-btnn">Login</button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- //Modal 1-->
+
+
+      <!-- cart-js -->
+      <script src="{% static 'assets/js/jquery-2.2.3.min.js' %}"></script>
+<!--      <script src="{% static 'assets/js/minicart.js' %}"></script>-->
+
+    <!--결제하기 화면 TAB이동-->
+      <script>
+         toys.render();
+
+         toys.cart.on('toys_checkout', function (evt) {
+         	var items, len, i;
+
+         	if (this.subtotal() > 0) {
+         		items = this.items();
+
+         		for (i = 0, len = items.length; i < len; i++) {}
+         	}
+         });
+      </script>
+      <!--// cart-js -->
+     <!--quantity-->
+      <script>
+         $('.value-plus').on('click', function () {
+         	var divUpd = $(this).parent().find('.value'),
+         		newVal = parseInt(divUpd.text(), 10) + 1;
+         	divUpd.text(newVal);
+         });
+
+         $('.value-minus').on('click', function () {
+         	var divUpd = $(this).parent().find('.value'),
+         		newVal = parseInt(divUpd.text(), 10) - 1;
+         	if (newVal >= 1) divUpd.text(newVal);
+         });
+      </script>
+      <!--quantity-->
+         <!--closed-->
+      <script>
+         $(document).ready(function (c) {
+         	$('.close1').on('click', function (c) {
+         		$('.rem1').fadeOut('slow', function (c) {
+         			$('.rem1').remove();
+         		});
+         	});
+         });
+      </script>
+      <script>
+         $(document).ready(function (c) {
+         	$('.close2').on('click', function (c) {
+         		$('.rem2').fadeOut('slow', function (c) {
+         			$('.rem2').remove();
+         		});
+         	});
+         });
+      </script>
+      <script>
+         $(document).ready(function (c) {
+         	$('.close3').on('click', function (c) {
+         		$('.rem3').fadeOut('slow', function (c) {
+         			$('.rem3').remove();
+         		});
+         	});
+         });
+      </script>
+      <!--//closed-->
+
+         <!-- start-smoth-scrolling -->
+<!--      <script src="{% static 'assets/js/move-top.js ' %}"></script>-->
+<!--      <script src="{% static 'assets/js/easing.js ' %}"></script>-->
+<!--      <script>-->
+<!--         jQuery(document).ready(function ($) {-->
+<!--         	$(".scroll").click(function (event) {-->
+<!--         		event.preventDefault();-->
+<!--         		$('html,body').animate({-->
+<!--         			scrollTop: $(this.hash).offset().top-->
+<!--         		}, 900);-->
+<!--         	});-->
+<!--         });-->
+<!--      </script>-->
+<!--      &lt;!&ndash; start-smoth-scrolling &ndash;&gt;-->
+<!--      &lt;!&ndash; here stars scrolling icon &ndash;&gt;-->
+<!--      <script>-->
+<!--         $(document).ready(function () {-->
+
+<!--         	var defaults = {-->
+<!--         		containerID: 'toTop', // fading element id-->
+<!--         		containerHoverID: 'toTopHover', // fading element hover id-->
+<!--         		scrollSpeed: 1200,-->
+<!--         		easingType: 'linear'-->
+<!--         	};-->
+<!--         	$().UItoTop({-->
+<!--         		easingType: 'easeOutQuart'-->
+<!--         	});-->
+
+<!--         });-->
+<!--      </script>-->
+      <!-- //here ends scrolling icon -->
+      <!--bootstrap working-->
+      <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+      <!-- //bootstrap working-->
+
+      <!-- easy-responsive-tabs -->
+      <script src="{% static 'assets/js/easy-responsive-tabs.js' %}"></script>
+      <script>
+         $(document).ready(function () {
+         	$('#horizontalTab').easyResponsiveTabs({
+         		type: 'default', //Types: default, vertical, accordion
+         		width: 'auto', //auto or any width like 600px
+         		fit: true, // 100% fit in a container
+         		closed: 'accordion', // Start closed if in accordion view
+         		activate: function (event) { // Callback function if tab is switched
+         			var $tab = $(this);
+         			var $info = $('#tabInfo');
+         			var $name = $('span', $info);
+         			$name.text($tab.text());
+         			$info.show();
+         		}
+         	});
+         	$('#verticalTab').easyResponsiveTabs({
+         		type: 'vertical',
+         		width: 'auto',
+         		fit: true
+         	});
+         });
+      </script>
+      <!-- credit-card -->
+      <script src="{% static 'assets/js/creditly.js' %}"></script>
+      <link rel="stylesheet" href="{% static 'assets/css/creditly.css' %}" type="text/css" media="all" />
+      <script>
+         $(function () {
+         	var creditly = Creditly.initialize(
+         		'.creditly-wrapper .expiration-month-and-year',
+         		'.creditly-wrapper .credit-card-number',
+         		'.creditly-wrapper .security-code',
+         		'.creditly-wrapper .card-type');
+
+         	$(".creditly-card-form .submit").click(function (e) {
+         		e.preventDefault();
+         		var output = creditly.validate();
+         		if (output) {
+         			// Your validated credit card output
+         			console.log(output);
+         		}
+         	});
+         });
+      </script>
+      <!-- //credit-card -->
+      <!-- start-smoth-scrolling -->
+      <script src="{% static 'assets/js/move-top.js' %}"></script>
+      <script src="{% static 'assets/js/easing.js' %}"></script>
+      <script>
+         jQuery(document).ready(function ($) {
+         	$(".scroll").click(function (event) {
+         		event.preventDefault();
+         		$('html,body').animate({
+         			scrollTop: $(this.hash).offset().top
+         		}, 900);
+         	});
+         });
+      </script>
+      <!-- start-smoth-scrolling -->
+      <!-- start-smoth-scrolling -->
+      <!-- here stars scrolling icon -->
+      <script>
+         $(document).ready(function () {
+
+         	var defaults = {
+         		containerID: 'toTop', // fading element id
+         		containerHoverID: 'toTopHover', // fading element hover id
+         		scrollSpeed: 1200,
+         		easingType: 'linear'
+         	};
+         	$().UItoTop({
+         		easingType: 'easeOutQuart'
+         	});
+
+         });
+      </script>
+
+      <!-- //here ends scrolling icon -->
+      <!--bootstrap working-->
+      <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+      <!-- //bootstrap working-->
+</body>
+</html>
+{% else %}
+{% load static %}
+<html lang="ko">
+
+    <head>
+        <title>혼싸 관리자페이지</title><meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap-responsive.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/maruti-login.css' %}" />
+    </head>
+    <body>
+        <div id="loginbox">
+            <form id="loginform" class="form-vertical" action="/user/login/">
+                <div class="control-group normal_text"> <h3><img src="{% static 'img/logo.png' %}" alt="Logo" /></h3></div>
+                <div class="control-group" style="text-align: center">
+                    <div style="font-size: 25px;margin: 0px auto;height: 100px;line-height: 100px;">로그인이 필요합니다.</div>
+                <div class="form-actions">
+                    <span class="pull-right"><input type="submit" class="btn btn-success" value="로그인 하러 가기"/></span>
+                </div>
+            </form>
+        </div>
+
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/maruti.login.js' %}"></script>
+    </body>
+
+</html>
+{% endif %}

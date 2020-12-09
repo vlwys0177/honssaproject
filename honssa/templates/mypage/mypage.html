@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}혼싸 - my page {% endblock %}
+{% block content %}
+
+<!--content-->
+<section class="contact py-lg-4 py-md-3 py-sm-3 py-3">
+    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+        <div style="text-align: center; font-size: 40px; padding: 20px 0px 0px 0px;">
+            마이페이지
+        </div>
+        <div style="text-align: center;border: 1px solid #666;margin: 20px 120px;">
+            <a href="detail/"><div style="margin: 40px auto;font-size: 30px;font-weight: 550;width: 500px;height: 50px;background-color: #eee;line-height: 50px;box-shadow: 1px 1px 3px #555;">개인정보수정</div></a>
+            <a href="order_list/"><div style="margin: 40px auto;font-size: 30px;font-weight: 550;width: 500px;height: 50px;background-color: #eee;line-height: 50px;box-shadow: 1px 1px 3px #555;">주문목록/배송조회</div></a>
+            <a href="../service/m2m/"><div style="margin: 40px auto;font-size: 30px;font-weight: 550;width: 500px;height: 50px;background-color: #eee;line-height: 50px;box-shadow: 1px 1px 3px #555;">반품/교환/환불</div></a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

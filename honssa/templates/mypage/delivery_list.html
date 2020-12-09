@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}혼싸{% endblock %}
+{% block content %}
+
+<section class="contact py-lg-4 py-md-3 py-sm-3 py-3">
+    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+        <div style="border: 1px solid #999;margin: 5px 0;padding: 20px;">
+            <div>
+                <button style="display: inline-block;width: 200px;height: 50px;line-height: 50px;text-align: center;font-size: 25px;font-weight: 500;box-shadow: 0px 0px 2px #000;" onclick="location.href= '../'">전 체</button>
+                <button style="display: inline-block;width: 200px;height: 50px;line-height: 50px;text-align: center;font-size: 25px;font-weight: 500;background: #ddd;box-shadow: 0px 0px 2px #000;">배송조회</button>
+            </div>
+            {% if orders %}
+                {% for order in orders %}
+                <div style="border-top: 1px solid;border-bottom: 1px solid;margin: 20px;font-size: 15px;">
+                    <div style="border-bottom: 1px solid;"><span style="display: inline-block;padding: 10px;width: 150px;text-align: center;font-weight: 550;border-right: 1px solid;">주문일</span><span style="display: inline-block;padding: 10px 15px;">{{order.order_date}}</span></div>
+                    <div style="border-bottom: 1px solid;"><span style="display: inline-block;padding: 10px;width: 150px;text-align: center;font-weight: 550;border-right: 1px solid;">주문상품정보</span><span style="display: inline-block;padding: 10px 15px;">{{ order.product_id.product_name }} / {{ order.order_quantity }}ea</span></div>
+                    <div style="border-bottom: 1px solid;"><span style="display: inline-block;padding: 10px;width: 150px;text-align: center;font-weight: 550;border-right: 1px solid;">배송상태</span><span style="display: inline-block;padding: 10px 15px;">{{ order.order_status }}</span></div>
+                    <div style="border-bottom: 1px solid;"><span style="display: inline-block;padding: 10px;width: 150px;text-align: center;font-weight: 550;border-right: 1px solid;">택배사 / 운송장</span><span style="display: inline-block;padding: 10px 15px;">{{ order.order_delivery_company }} / {{ order.order_transport_number }}</span></div>
+                </div>
+                {% endfor %}
+            {% else %}
+            <div style="border-top: 1px solid;border-bottom: 1px solid;margin: 20px;height: 150px;text-align: center;">
+                <p style="font-size: 18px;line-height: 150px;">주문 상품이 존재하지 않습니다.</p>
+            </div>
+            {% endif %}
+            <div style="text-align: center;">
+            <div style="text-align: center;">
+                <button style="margin: 0px 10px;border: 1px solid #77A1ED;padding: 5px;width: 100px;background: #7CF7E4" onclick="location.href='https://www.cjlogistics.com/ko/tool/parcel/tracking'">배송조회</button>
+                <button style="margin: 0px 10px;border: 1px solid #77A1ED;padding: 5px;width: 100px;background: #7CF7E4" onclick="location.href= '/honssa/service/board/'">상품문의</button>
+                <button style="margin: 0px 10px;border: 1px solid #77A1ED;padding: 5px;width: 100px;background: #7CF7E4" onclick="location.href= '/honssa/service/board/'">반품신청</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

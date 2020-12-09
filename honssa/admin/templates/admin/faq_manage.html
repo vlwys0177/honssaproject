@@ -1,0 +1,79 @@
+{% extends 'base2.html' %}
+
+{% block title %}문의관리{% endblock %}
+{% block content %}
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="/admin/index/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="/admin/faq/">1:1 문의관리</a><a>문의목록</a></div>
+    </div>
+
+    <div style="margin: auto;width: 970px;">
+        <div class="row">
+            <div class="widget-box">
+                <div class="widget-title">
+                    <h4 style="margin-top: 0px; padding: 8px;">문의 목록</h4>
+                </div>
+                <div class="widget-content">
+                    <form>
+                        <table class="table table-bordered data-table">
+                            <thead>
+                            <tbody>
+                                <tr>
+                                    <th width="35%" style="font-size: 14px;">제목</th>
+                                    <th width="15%" style="font-size: 14px;">아이디</th>
+                                    <th width="20%" style="font-size: 14px;">카테고리</th>
+                                    <th width="15%" style="font-size: 14px;">등록일</th>
+                                    <th width="15%" style="font-size: 14px;">답변 상태</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for faq in faqlists %}
+                                <tr>
+                                    <!-- 제목 -->
+                                    <td>
+                                        <a href="{% url 'admin:m2m_answer' faq.id %}">
+                                            {{ faq.comment_title }}
+                                        </a>
+                                    </td>
+                                    <!-- 아이디 -->
+                                    <td>{{ faq.member_number.member_id }}</td>
+                                    <!-- 카테고리 -->
+                                    <td>{{ faq.comment_category }}</td>
+                                    <!-- 등록일 -->
+                                    <td>{{ faq.comment_write_date }}</td>
+                                    <!-- 답변 상태 -->
+                                    <td>
+                                        {% if faq.comment_status == "0" %}
+                                        NO
+                                        {% else %}
+                                        YES
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <!-- 문의 페이징-->
+            <div style="text-align: center;">
+                <!-- 현 페이지 보다 이전의 page가 존재한다면 -->
+                {% if faqlists.has_previous %}
+                    <!-- 바로 이전 페이지 -->
+                    <a href="?page={{faqlists.previous_page_number}}">이전</a>
+                {% endif %}
+
+                <!-- 현재 페이지 -->
+                <span>{{faqlists.number}}</span>
+
+                <!-- 현 페이지 보다 이후의 page가 존재한다면 -->
+                {% if faqlists.has_next %}
+                    <!-- 바로 다음 페이지 -->
+                    <a href="?page={{faqlists.next_page_number}}">다음</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

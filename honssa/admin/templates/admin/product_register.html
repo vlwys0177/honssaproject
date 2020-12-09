@@ -1,0 +1,56 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block content %}
+
+<form method="post" class="post-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id="content">
+        <div id="content-header">
+            <div id="breadcrumb">
+                <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="../">물품 관리</a><a href="">물품 등록</a>
+            </div>
+            <h2 style="margin: 10px;">물품 상세</h2>
+            <div class="container-fluid">
+                <div class="row-fluid" style="margin: 0px;">
+                    <div class="span12">
+                        <div class="widget-box">
+                            <div class="widget-content">
+                                <div class="widget-title" style="line-height: 36px;">
+                                    <p class="control-label" style="display: inline-block;margin: 0px 10px;">카테고리</p>
+                                    <select id="category" name="product_category" style="margin: 0px;">
+                                        <option value="전체">-- 전체 --</option>
+                                        <option value="주방용품">- 주방용품</option>
+                                        <option value="에어프라이어/튀김기">에어프라이어 / 튀김기</option>
+                                        <option value="냉장고">냉장고</option>
+                                        <option value="생활용품">- 생활용품</option>
+                                        <option value="에어컨/냉풍기">에어컨 / 냉풍기</option>
+                                        <option value="청소용품">- 청소용품</option>
+                                        <option value="세탁기">세탁기</option>
+                                        <option value="청소기">청소기</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <div class="text-center" style="margin-top: 20px;">
+                                        <p>상 품 명<input type="text" style="margin-left: 10px; margin-right: 500px;" name="product_name"/>크기<input type="text" style="margin-left: 10px;" name="product_size"/></p>
+                                        <p>제 조 사<input type="text" style="margin-left: 10px; margin-right: 500px;" name="product_manufacturer"/>용량<input type="text" style="margin-left: 10px;" name="product_volume"/></p>
+                                        <p>브 랜 드<input type="text" style="margin-left: 10px; margin-right: 500px;" name="product_brand"/>재질<input type="text" style="margin-left: 10px;" name="product_meterial"/></p>
+                                        <p>제 조 국<input type="text" style="margin-left: 10px; margin-right: 500px;" name="product_made_country"/>가격<input type="text" style="margin-left: 10px;" name="product_Price"/></p>
+                                        <p>제조일자<input type="text" style="margin-left: 10px; margin-right: 500px;" name="product_made_date"/>재고<input type="text" style="margin-left: 10px;" name="product_stock"/></p>
+                                        <input type="file" name="product_image">
+                                        <p style="float: left;">설명</p>
+                                        <input type="text" class="span24" name="product_description">
+                                        {{form.as_p}}
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="save btn btn-primary" type="submit" style="float: right;">완료</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

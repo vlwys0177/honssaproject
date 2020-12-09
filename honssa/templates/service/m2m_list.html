@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}혼싸{% endblock %}
+{% block content %}
+
+<!--content-->
+
+<section class="contact py-lg-4 py-md-3 py-sm-3 py-3">
+    <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+        <div style="text-align: right; margin: 5px 0px;"><a href="../board" style="border: 1px solid #aaa; padding: 5px;">문의하기</a></div>
+        <div style="font-size: 20px;font-weight: 550;padding: 20px 0px;border-bottom: 1px solid #999;">나의 문의내역</div>
+        <div>
+            <table style="width: 100%; text-align: center; margin:4px 0px">
+                <thead>
+                    <tr style="height: 50px; font-size: 15px; border-bottom: 1px solid #999;">
+                        <th style="text-align: center; width: 15%">작성자</th>
+                        <th style="text-align: center; width: 20%">작성일자</th>
+                        <th style="text-align: center; width: 50%">제목</th>
+                        <th style="text-align: center; width: 15%">답변상태</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if list %}
+                    {% for a in list %}
+                    <tr style="height: 50px; border-bottom: 1px solid #999;">
+                        <td>{{ a.member_number.member_name }}</td>
+                        <td>{{ a.comment_write_date }}</td>
+                        <td><a href="{{a.id}}">{{ a.comment_title }}</a></td>
+                        <td>{{ a.comment_status }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <td colspan="4" style="font-size: 18px;line-height: 150px;height: 150px">문의하신 내역이 없습니다.</td>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

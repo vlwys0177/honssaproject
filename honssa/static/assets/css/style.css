@@ -1,0 +1,26 @@
+
+/*게시판에 전송*/
+.clients_more-buttn a ,.subscrib-btnn,.sent-butnn{
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    letter-spacing: 2px;
+    background-color: #fff;
+    outline: none;
+    padding: 13px 33px;
+    border: 1px double #EAEAEA;
+    margin: 22px 0px;
+	    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+/*마우스를 올렸을떄*/
+.clients_more-buttn a:hover,.subscrib-btnn:hover,.sent-butnn:hover {background:#FFCB2D;
+color:#000;}
+ .carousel-control-prev {
+    left: -58px;
+}

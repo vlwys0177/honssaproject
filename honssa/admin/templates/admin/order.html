@@ -1,0 +1,68 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block title %}혼싸 관리자 페이지 {% endblock %}
+{% block content %}
+
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="/admin/index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href=""> 주문관리</a></div>
+  </div>
+  <div class="bg-whi hei-8"></div>
+  <div class="bg-whi hei-9">
+      <div class="box" style="padding: 10px 0;">
+          <div class="tex-2 hei-1" style="padding: 0px 10px;">주문조회</div>
+          <br><div class="tex-1" style="margin: 0px 10px;">배송상태
+              <form style="display: inline;">
+              <span class="le-100" style="font-size: 15px">
+                <button name="search" value="all">전    체</button>
+                <button name="search" value="deli">배 송 중</button>
+                <button name="search" value="be_deli">배송준비</button>
+                <button name="search" value="fi_deli">배송완료</button>
+                <button name="search" value="cancel">취    소</button>
+                <button name="search" value="change">교    환</button>
+                <button name="search" value="refund">환    불</button>
+              </span>
+              </form>
+          </div>
+      </div>
+  </div>
+  <div class="bg-whi hei-6">
+    <div class="box">
+      <div class="tex-2 hei-1" style="padding: 10px;">주문 목록</div>
+      <div class="ord-tb">
+        <table>
+          <thead>
+            <th>주문번호</th>
+            <th>주문날짜</th>
+            <th>주문자</th>
+            <th>상품명</th>
+            <th>결제금액</th>
+            <th>결제수단</th>
+            <th>결제상태</th>
+            <th>배송상태</th>
+          </thead>
+          <tbody>
+          {% for a in order_list %}
+            <tr>
+              <td>{{ a.id }}</td>
+              <td>{{ a.order_date|date:"Y-m-d" }}</td>
+              <td>{{ a.member_id.member_name }}</td>
+              <td><a href="detail/{{ a.id }}">{{ a.product_id.product_name }}</a></td>
+              <td>{{ a.order_price }}</td>
+              <td>{{ a.order_mathod }}</td>
+              <td>{{ a.order_pay_status }}</td>
+              <td>{{ a.order_status }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="pg">
+        　
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+{% load static %}
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb">
+            <a href="/admin/index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="../">물품 관리</a><a>물품 상세</a>
+        </div>
+        <h2 style="padding: 10px 20px 0px 20px;margin: 0px;">물품 수정</h2>
+        <div class="container-fluid">
+            <div class="row-fluid" style="margin: 0px;">
+                <div class="span12">
+                    <div class="widget-box">
+                        <div class="widget-content" style="height: 56%;">
+                            <form method="post" class="post-form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                                <div>
+                                    <div>
+                                        <p style="display: inline-block; cursor: context-menu; margin: 0px 10px 0px 0px;">카테고리</p>
+                                        <select style="margin: 0px;">
+                                            <option>{{ product.product_category }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="text-center" style="margin-top: 20px;">
+                                        <img src="/honssa/MEDIA/{{ product.product_image }}" style="position: absolute;left: 20px;width: 400px;">
+                                        <p style="padding-left: 300px;">상 품 명<input type="text" style="margin-left: 10px; margin-right: 300px;" name="product_name" value="{{product.product_name}}" readonly>크기<input type="text" style="margin-left: 10px;" name="product_size" value="{{product.product_size}}" readonly></p>
+                                        <p style="padding-left: 300px;">제 조 사<input type="text" style="margin-left: 10px; margin-right: 300px;" name="product_manufacturer" value="{{product.product_manufacturer}}" readonly>용량<input type="text" style="margin-left: 10px;" name="product_volume" value="{{product.product_volume}}" readonly></p>
+                                        <p style="padding-left: 300px;">브 랜 드<input type="text" style="margin-left: 10px; margin-right: 300px;" name="product_brand" value="{{product.product_brand}}" readonly>재질<input type="text" style="margin-left: 10px;" name="product_meterial" value="{{product.product_meterial}}" readonly></p>
+                                        <p style="padding-left: 300px;">제 조 국<input type="text" style="margin-left: 10px; margin-right: 300px;" name="product_made_country" value="{{product.product_made_country}}" readonly>가격<input type="text" style="margin-left: 10px;" name="product_Price" value="{{product.product_Price}}"></p>
+                                        <p style="padding-left: 300px;">제조일자<input type="text" style="margin-left: 10px; margin-right: 300px;" name="product_made_date" value="{{product.product_made_date}}" readonly>재고<input type="text" style="margin-left: 10px;" name="product_stock" value="{{product.product_stock}}"></p>
+                                        <p style="margin-right: 37%;">설명</p>
+                                        <div style="text-align: right;"><textarea style="width: 70%" cols="10" rows="10" class="span24" name="product_description">{{ product.product_description }}</textarea></div>
+                                    </div>
+                                </div>
+                                <button class="save btn btn-primary" type="submit" style="float: right;margin: 10px 0px; width: 80pg;">수정</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

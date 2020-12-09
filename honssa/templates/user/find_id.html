@@ -1,0 +1,37 @@
+{% load static %}
+
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>회원가입</title>
+        <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css">
+    </head>
+    <body class="login" style="background-image: url({% static 'assets/img/honssamain.png' %});">
+        <div class="login">
+            <form action ="" method = "POST">
+                {% csrf_token %}
+                <p>
+                    <label for="name">이름</label><br>
+                    <input id = "name" type="text" name="username" value="{{ member.member_name }}">
+                </p>
+                <p> <label for="email">이 메 일:</label><br>
+                    <input id = "email" type="email"  name="useremail" value="{{ member.member_email }}">
+                </p>
+                <p> <label for="password">아이디:</label><br>
+                    <input id="password" type="text" style="cursor: context-menu; color: red;" name="password" value="{{ member.member_id }}" readonly>
+                </p>
+                {% if member %}
+                <input type="button" onclick="location.href='../find_password/'" style="width: 100px;margin: 0px 2px;margin-left: -5px;" value="비밀번호찾기">
+                {% else %}
+                <input type ="submit" style="width: 80px;margin: 0px 2px;" value="찾기">
+                {% endif %}
+                <a href = "../login/"><input type="button" style="width: 80px;margin: 0px 2px;" value="뒤로가기"></a>
+            </form>
+        </div>
+    </body>
+    <script>
+        {% if msg %}
+            alert('{{ msg }}');
+        {% endif %}
+    </script>
+</html>

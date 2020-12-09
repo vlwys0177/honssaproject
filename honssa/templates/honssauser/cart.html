@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+{% block title %}혼싸{% endblock %}
+{% block content %}
+
+        <section class="checkout py-lg-4 py-md-3 py-sm-3 py-3">
+            <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+               <div class="shop_inner_inf">
+                  <div class="privacy about">
+                     <h3>장바구니</h3>
+                     <div class="checkout-right">
+                         <form action="" method="post" class="creditly-card-form agileinfo_form">
+                         {% csrf_token %}
+                        <h4>장바구니에 담겨있는 상품: <span>{{ cart.count }}개의 상품</span></h4>
+                            <table class="timetable_sub">
+                               <thead>
+                                  <tr>
+                                     <th>상품</th>
+                                      <th style="width: 150px;">수량</th>
+                                      <th>상품명</th>
+                                      <th>가격</th>
+                                      <th>삭제</th>
+                                  </tr>
+                               </thead>
+                                {% for cart in cart %}
+                                <input name="cart" value="{{ cart.id }}" style="display: none;">
+                                <tbody>
+                                    <tr class="rem1">
+                                        <td class="invert-image"><a href="single.html"><img src="/honssa/MEDIA/{{ cart.product_number.product_image }}" alt="" style="width: 40%"></a>
+                                        <td class="invert">
+                                        <div class="quantity">
+                                            <div class="quantity-select">
+    <!--                                          <div class="entry value-minus"></div>-->
+                                                <div class="entry value"><span>{{ cart.cart_quantity }}</span></div>
+    <!--                                          <div class="entry value-plus active"></div>-->
+                                            </div>
+                                        </div>
+                                        </td>
+                                        </td>
+                                        <td class="invert">{{ cart.product_number.product_name }}</td>
+                                        <td class="invert">￦ {{ cart.cart_product_price|intcomma }}</td>
+                                        <td class="invert">
+                                            <div class="rem">
+                                                <button class="btn btn-primary" onclick="location.href='delete/{{ cart.id }}'" style="background: #FFCB2D"><a>제거</a> </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table>
+                         </form>
+                     </div>
+
+                      <div class="checkout-left">
+                          <div class="col-md-4 checkout-left-basket">
+                              <h4>장바구니</h4>
+                              {% for cart in cart %}
+                              <ul>
+                                  <li>{{ cart.product_number.product_name }}<span>￦{{ cart.cart_product_price|intcomma }}</span></li>
+                              {% endfor %}
+                                  <li style="border-top: 1px solid #999;">총 금액 : <span>￦{{ total|intcomma }}</span></li>
+                              </ul>
+                          </div>
+
+                          <div class="col-md-8 address_form">
+                              <h4>주문자 정보</h4>
+                                  <section class="creditly-wrapper wrapper">
+                                      <div class="information-wrapper">
+                                          <div class="first-row form-group">
+                                              <div class="controls">
+                                                  <label class="control-label">이름 </label>
+                                                  <input class="billing-address-name form-control" type="text" name="name" placeholder="이름" value="{{ member.member_name }}" readonly>
+                                              </div>
+                                              <div class="card_number_grids">
+                                                  <div class="card_number_grid_left">
+                                                      <div class="controls">
+                                                          <label class="control-label">휴대전화</label>
+                                                          <input class="form-control" type="text" placeholder="휴대전화" value="0{{ member.member_contact_number }}" readonly>
+                                                      </div>
+                                                  </div>
+                                                  <div class="card_number_grid_right">
+                                                      <div class="controls">
+                                                          <label class="control-label">우편번호 </label>
+                                                          <input class="form-control" type="text" placeholder="우편번호" value="{{ post_number }}" readonly>
+                                                      </div>
+                                                  </div>
+                                                  <div class="clear"> </div>
+                                              </div>
+                                              <div class="controls">
+                                                  <label class="control-label">주소 </label>
+                                                  <input class="form-control" type="text" placeholder="주소" value="{{ member.member_address}}" readonly>
+                                              </div>
+                                              <div class="controls">
+                                                  <label class="control-label">상세주소 </label>
+                                                  <input class="form-control" type="text" placeholder="상세주소" value="{{ member.member_address_detail }}" readonly>
+                                              </div>
+                                          </div>
+                                      </div>
+<!--                                    <button class="submit check_out">현재위치</button>-->
+                                  </section>
+                              <form action="{% url 'honssauser:payment' %}" method="post">
+                                  {% csrf_token %}
+                                  {% for cart in cart %}
+                                  <input type="text" style="display: none;" name="cart_id" value="{{ cart.id }}">
+                                  {% endfor %}
+                                  <div class="checkout-right-basket" style="margin: 3em 1em;">
+                                      <button type="submit"><a>결제하기</a></button>
+                                      <a href="/honssa/my/detail/">배송지 수정</a>
+                                  </div>
+                              </form>
+                          </div>
+                          <div class="clearfix"></div>
+                          <div class="clearfix"></div>
+                      </div>
+                  </div>
+               </div>
+               <!-- //top products -->
+            </div>
+        </section>
+{% endblock %}

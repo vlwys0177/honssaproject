@@ -1,0 +1,23 @@
+@charset "utf-8";
+body { padding:50px;}
+
+.product_view{ position : relative;padding:0 0 0 395px; width: 962px; box-sizing: border-box;margin: auto;}
+.product_view .img {position: absolute; left: 0 ;top:0 }
+.product_view .img > img{width: 368px ; height : 500 px ;border:1px solid #523232}
+.product_view h2 {padding:0 0 20px ; border-bottom:2px solid #333 ;font-size:24px; columns: #232323; line-height:26px;}
+.product_view table th
+.product_view table td {padding: 14px 0;font-size: 15px; color: #444;text-align:left; }
+.product_view table th {padding: 14px 0;font-size: 15px ; color:#444; text-align:left}
+.product_view table td {font-size: 14px ; color:#444;}
+.product_view table td.price {font-size: 22px;}
+.product_view table td.total {font-size: 22px; color: #0a56a9;}
+.product_view table td.total b {font-size: 22px;}
+.product_view table .length{ position: relative; width: 71px ; height: 32px; border:1px solid #c6c6c6 }
+.product_view table .length input{ width: 44px; height: 32px; border:none;}
+.qwe{position : relative; width: 962px; box-sizing: border-box;margin:20%;}
+.asd{padding:0 0 20px ; border-bottom:2px solid #333 ;font-size:24px; columns: #232323; line-height : 26px;}
+.product_view .btns { padding: 45px 0 0; text-align: center;}
+.product_view .btns > a { display: inline-block; width: 136px; height: 42px;border-radius: 2px; font-size: 16px; columns: #333333;; line-height: 42px; }
+.product_view .btns > a.btn1 { background: #666;}
+.product_view .btns > a.btn2 { background: #0a56a9;}
+.defailimg {position : relative;padding: 0 0 0 395px ;}

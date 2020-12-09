@@ -1,0 +1,31 @@
+{% extends 'base2.html' %}
+
+{% block title %}혼싸 관리자 페이지 {% endblock %}
+{% block content %}
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="/admin/index" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a> 통계관리&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;매출분석</a></div>
+  </div>
+  <div class="bg-whi hei-2">
+    <div class="hei-1 box" style="top: 15px; line-height: 50px;">
+      <span class="sales-analy-btn btn-choice btn-white"><a href="#">일별 매출</a></span>
+      <span class="sales-analy-btn"><a href="#">주별 매출</a></span>
+      <span class="sales-analy-btn"><a href="#">월별 매출</a></span>
+    </div>
+  </div>
+  <div class="bg-whi hei-9">
+    <div class="box hei-9-a">
+      <div class="tex-shadow" style="font-size: 18px; padding: 5px;">기간 조회</div>
+      <div style="padding: 5px; font-size: 15px;">&nbsp;&nbsp;&nbsp;기&nbsp;&nbsp;&nbsp;간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="date-btn">오늘</button>&nbsp;&nbsp;
+        <button class="date-btn">3일</button>&nbsp;&nbsp;
+        <button class="date-btn">7일</button>&nbsp;&nbsp;
+        <button class="date-btn">1개월</button>&nbsp;&nbsp;
+        <button class="date-btn">3개월</button>&nbsp;&nbsp;
+        <button class="date-btn">6개월</button>&nbsp;&nbsp;
+        <button class="date-btn">1년</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

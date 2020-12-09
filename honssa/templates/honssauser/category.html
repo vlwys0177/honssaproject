@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}혼싸{% endblock %}
+{% block content %}
+
+  <!--첫번째 상품-->
+<br>
+   <section id="shop-collection">
+      <div class="container">
+        <h1 class="section-title">{{ category }}</h1>
+        <hr class="lines">
+        <div class="row">
+          {% for product in product %}
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="shop-product">
+              <div class="product-box">
+                <a href="#"><img style="width: 300px; height: 300px;" src="/honssa/MEDIA/{{ product.product_image }}" alt=""></a>
+                <div class="cart-overlay">
+                </div>
+<!--                <span class="sticker new"><strong>NEW</strong></span>-->
+                <div class="actions">
+                  <div class="add-to-links">
+                    <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
+                    <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
+                    <a class="btn-quickview md-trigger" data-modal="modal-3"><i class="icon-eye"></i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title"><a href="{% url 'honssauser:product_detail' product.id %}">{{ product.product_name }}</a></h4>
+                <div class="align-items">
+                  <div class="pull-left">
+                    <span class="price">￦ {{ product.product_Price|intcomma }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+   </section>
+
+{% endblock %}

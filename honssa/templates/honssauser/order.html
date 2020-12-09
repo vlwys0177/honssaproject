@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}혼싸{% endblock %}
+{% block content %}
+       <section class="checkout py-lg-4 py-md-3 py-sm-3 py-3">
+            <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+               <div class="shop_inner_inf">
+                  <div class="privacy about">
+                     <h3>주문완료</h3>
+                     <div class="checkout-right">
+                        <h4>총 주문한 상품: <span>{{ len }}개의 상품</span></h4>
+                        <table class="timetable_sub">
+                           <thead>
+                              <tr>
+                                 <th>No</th>
+                                 <th>내역</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr class="rem1">
+                                 <td class="invert">총 상품 가격</td>
+                                 <td class="invert">{{ total_price|intcomma }} 원</td>
+                              </tr>
+                              <tr class="rem1">
+                                 <td class="invert">할인</td>
+                                 <td class="invert">0 원</td>
+                              </tr>
+                               <tr class="rem1">
+                                 <td class="invert">배송비</td>
+                                 <td class="invert">0 원</td>
+                              </tr>
+                               <tr class="rem1">
+                                 <td class="invert">총 결제 금액</td>
+                                 <td class="invert">{{ total_price|intcomma }} 원</td>
+                              </tr>
+                                 <tr class="rem1">
+                                 <td class="invert">배송정보</td>
+                                 <td class="invert">이름: {{ member.member_name }}</br> 배송지: {{ member.member_address }} {{ member.member_address_detail }}</td>
+                              </tr>
+                                <tr class="rem1">
+                                 <td class="invert">배송상태</td>
+                                 <td class="invert">상품 준비중</td>
+                              </tr>
+                                <tr class="rem1">
+                                 <td class="invert">배송조회</td>
+                                 <td><button class="">상품 준비중</button></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                           <div class="checkout-right-basket">
+                              <a href="/honssa/main/">메인페이지</a>
+                              <a href="/honssa/my/">마이페이지</a>
+                           </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+{% endblock %}

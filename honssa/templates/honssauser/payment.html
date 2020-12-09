@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}혼싸{% endblock %}
+{% block content %}
+
+    <section class="checkout py-lg-4 py-md-3 py-sm-3 py-3">
+         <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+            <div class="ads-grid_shop">
+               <div class="shop_inner_inf">
+                  <div class="privacy about">
+                     <!--/tabs-->
+                     <div class="responsive_tabs">
+                        <div id="horizontalTab">
+                           <ul class="resp-tabs-list">
+                              <li>계좌이체</li>
+                               <form action="{% url 'honssauser:order_create' %}" method="post" class="creditly-card-form agileinfo_form" id="form">
+                                   {% csrf_token %}
+                                   {% for cart in cart %}
+                                    <input type="text" style="display: none;" name="cart" value="{{ cart }}">
+                                   {% endfor %}
+                                   <li onclick="form.submit();">신용/체크카드</li>
+                               </form>
+<!--                              <li>인터넷뱅킹</li>-->
+<!--                              <li>무통장입금(가상계좌)</li>-->
+                           </ul>
+                           <div class="resp-tabs-container">
+                              <!--/tab_one-->
+                           <div class="tab1">
+                             <div class="pay_info">
+                                <div class="vertical_post">
+                                   <form action="{% url 'honssauser:pay_order' %}" method="post" id="form_1">{% csrf_token %}
+                                      <input type="text" style="display: none;" name="pay_method" value="계좌이체"/>
+                                       {% for cart in cart %}
+                                       <input type="text" style="display: none;" name="cart" value="{{ cart }}">
+                                       {% endfor %}
+                                      <label class="control-label">계좌이체</label>
+                                      <div class="swit-radio">
+                                         <div class="check_box_one">
+                                            <div class="radio_one"> <label><input type="radio" name="radio" checked=""><i></i>(주) 혼싸 우리은행</label> </div>
+                                         </div>
+                                         <div class="clearfix"></div>
+                                      </div>
+                                      <label class="control-label">현금영수증</label>
+                                             <input class="billing-address-name form-control" type="text" name="name" placeholder=" - 없이 휴대전화 번호 입력"></select>
+                                          <ul class="nav navbar-nav navbar-right">
+                                         <li onclick="form_1.submit()" style="cursor: pointer;"><a class="menulinks">결제하기</a></li>
+                                       </ul>
+                                   </form>
+                                </div>
+                             </div>
+                          </div>
+                          <!--//tab_one-->
+<!--                          <div class="tab2">-->
+<!--                              <div class="pay_info">-->
+<!--                                <form action="{% url 'honssauser:order_create' %}" method="post" class="creditly-card-form agileinfo_form">-->
+<!--                                    {% csrf_token %}-->
+<!--                                   <section class="creditly-wrapper wthree, w3_agileits_wrapper">-->
+<!--                                      <div class="credit-card-wrapper">-->
+<!--                                         <div class="first-row form-group">-->
+<!--                                            <div class="controls">-->
+<!--                                               <label class="control-label">카드이름</label>-->
+<!--                                               <input class="billing-address-name form-control" type="text" name="name" placeholder="삼성카드">-->
+<!--                                            </div>-->
+<!--                                            <div class="w3_agileits_card_number_grids">-->
+<!--                                               <div class="w3_agileits_card_number_grid_left">-->
+<!--                                                  <div class="controls">-->
+<!--                                                     <label class="control-label">카드번호</label>-->
+<!--                                                     <input class="number credit-card-number form-control" type="text" name="number" inputmode="numeric" autocomplete="cc-number"-->
+<!--                                                        autocompletetype="cc-number" x-autocompletetype="cc-number" placeholder="&#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149; &#149;&#149;&#149;&#149;">-->
+<!--                                                  </div>-->
+<!--                                               </div>-->
+<!--                                               <div class="w3_agileits_card_number_grid_right">-->
+<!--                                                  <div class="controls">-->
+<!--                                                     <label class="control-label">CVC</label>-->
+<!--                                                     <input class="security-code form-control" Â· inputmode="numeric" type="text" name="security-code" placeholder="&#149;&#149;&#149;">-->
+<!--                                                  </div>-->
+<!--                                               </div>-->
+<!--                                               <div class="clear"> </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="controls">-->
+<!--                                               <label class="control-label">유효기간</label>-->
+<!--                                               <input class="expiration-month-and-year form-control" type="text" name="expiration-month-and-year" placeholder="MM / YY">-->
+<!--                                            </div>-->
+<!--                                         </div>-->
+<!--                                          <ul class="nav navbar-nav navbar-right">-->
+<!--                                              {% for cart in cart %}-->
+<!--                                              <input type="text" style="display: none;" name="cart" value="{{ cart }}">-->
+<!--                                              {% endfor %}-->
+<!--                                              <li><button type="submit"><a class="menulinks">결제하기</a></button></li>-->
+<!--                                       </ul>-->
+<!--                                      </div>-->
+<!--                                   </section>-->
+<!--                                </form>-->
+<!--                             </div>-->
+<!--                          </div>-->
+                  </div>
+               </div>
+               <!-- //payment -->
+               <div class="clearfix"></div>
+            </div>
+         </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+{% endblock %}

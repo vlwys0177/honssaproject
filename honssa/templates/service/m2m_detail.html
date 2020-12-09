@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}혼싸{% endblock %}
+{% block content %}
+
+      <!--contact -->
+      <section class="contact py-lg-4 py-md-3 py-sm-3 py-3">
+         <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+            <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">문의내용</h3>
+            <div class="contact-list-grid">
+              <div class=" agile-wls-contact-mid">
+                 <div class="form-group contact-forms">
+                     <div type="text" class="form-control" name="title">
+                         <span style="font-weight: 550;display: inline-block;height: 33px;line-height: 33px;">{{ question.comment_title }}</span>
+                     </div>
+                 </div>
+                 <div>
+                     <div class="form-group contact-forms">
+                        <div class="form-control" name="question" style="height: auto;min-height: 200px;">
+                        {% if photo %}
+                            <img src="/honssa/MEDIA/{{ photo }}">
+                        {% endif %}
+                        <p>{{ question.comment_question }}</p>
+                        </div>
+                     </div>
+                 </div>
+              </div>
+            </div>
+         </div>
+      </section>
+
+    <!--contact -->
+      <section class="contact py-lg-4 py-md-3 py-sm-3 py-3">
+         <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
+            <h3 class="title text-center mb-lg-5 mb-md-4 mb-sm-4 mb-3">답변내용</h3>
+            <div class="contact-list-grid">
+              <div class=" agile-wls-contact-mid">
+                 <div class="form-group contact-forms">
+                 </div>
+                 <div>
+                     <div class="form-group contact-forms">
+                        <p class="form-control" name="question" style="height: auto;min-height: 200px;">{{ content.answer_description }}</p>
+                     </div>
+                 </div>
+              </div>
+            </div>
+         </div>
+      </section>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base2.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="/admin/index/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a><a href="/admin/member/">회원목록</a><a>회원정보수정</a></div>
+
+        <div class="widget-title">
+            <h4>회원 정보</h4>
+        </div>
+        <div class="widget-content">
+            <form method="POST">
+            {% csrf_token %}
+                <table class="table table-bordered data-table">
+                    <thead>
+                    <tr>
+                       <th width="15%" style="font-size: 14px;">등급</th>
+                       <th width="15%" style="font-size: 14px;">이름</th>
+                       <th width="15%" style="font-size: 14px;">아이디</th>
+                       <th width="20%" style="font-size: 14px;">이메일</th>
+                       <th width="20%" style="font-size: 14px;">휴대폰번호</th>
+                       <th width="20%" style="font-size: 14px;">가입일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td>
+                                {% if info.member_rank == 'VIP' %}
+                                    <select name="rank_edit">
+                                        <option name="rank_edit" value="VIP" selected>VIP</option>
+                                        <option name="rank_edit" value="VVIP">VVIP</option>
+                                        <option name="rank_edit" value="VVVIP">VVVIP</option>
+                                    </select>
+                                {% elif info.member_rank == 'VVIP' %}
+                                    <select name="rank_edit">
+                                        <option name="rank_edit" value="VIP">VIP</option>
+                                        <option name="rank_edit" value="VVIP" selected>VVIP</option>
+                                        <option name="rank_edit" value="VVVIP">VVVIP</option>
+                                    </select>
+                                {% elif info.member_rank == 'VVVIP' %}
+                                    <select name="rank_edit">
+                                        <option name="rank_edit" value="VIP">VIP</option>
+                                        <option name="rank_edit" value="VVIP">VVIP</option>
+                                        <option name="rank_edit" value="VVVIP" selected>VVVIP</option>
+                                    </select>
+                                {% else %}
+                                관리자
+                                {% endif %}
+                            </td>
+                            <td>{{ info.member_name }}</td>
+                            <td>{{ info.member_id }}</td>
+                            <td>{{ info.member_email }}</td>
+                            <td>{{ info.member_contact_number }}</td>
+                            <td>{{ info.member_join_date }}</td>
+                        </tr>
+                </tbody>
+            </table>
+                <input type="submit" class="btn btn-success" value="정보 수정">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
